@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 });
 
 // Configure file upload
-const upload = multer({ dest: storage });
+const upload = multer({ storage: storage });
 
 function encryptFile(filePath, password, callback) {
     const algorithm = 'aes-256-cbc';
