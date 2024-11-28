@@ -67,7 +67,7 @@ function decryptFile(encryptedPath, password, ivHex, callback) {
 
 // Home route remains the same
 app.get('/', (req, res) => {
-    res.send('<h2>Welcome to the File Sharing Service!</h2><form action="/upload" method="POST" enctype="multipart/form-data"><input type="file" name="file"><button type="submit">Upload File</button></form>');
+    res.send('<h2>Welcome to the File Sharing Service!</h2>');
 });
 
 
