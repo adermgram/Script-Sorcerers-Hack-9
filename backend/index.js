@@ -16,8 +16,21 @@ const cache = new NodeCache({ stdTTL: 600 });  // Cache expiry set to 600 second
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors());
 app.use(express.json());
+
+
+// Configure multer to use /tmp for uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadPath = path.join('/tmp', 'uploads');
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    }
+});
+
 // Configure file upload
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: storage });
 
 function encryptFile(filePath, password, callback) {
     const algorithm = 'aes-256-cbc';
